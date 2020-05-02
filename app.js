@@ -7,14 +7,17 @@ var logger = require('morgan');
 var playlistRouter = require('./src/Controller/playlistController');
 var userRouter = require('./src/Controller/userController');
 var Authcontroller = require('./src/Controller/authController');
+var cors = require('cors')
 
 
 const mongoose = require('mongoose');
 const config = require('./src/config/index.js')['devo'];
 var app = express();
 
+
 app.use(logger('dev'));
 app.use(express.json());
+app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));

@@ -14,7 +14,9 @@ let playlistSchema = new Schema({
     created_at: { type: Date, default: Date.now },
     created_by: { type: String, required: true },
     shared_with: [String],
-    image: { type: String, default: "default.png" }
+    image: { type: String, default: "default.jpg" },
+    user_name: String,
+    state: { type: String, default: "ACTIVE" }
 });
 
 const playlist = mongoose.model('playlist', playlistSchema);
