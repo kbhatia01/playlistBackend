@@ -4,7 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./src/Controller/playlistController');
+var playlistRouter = require('./src/Controller/playlistController');
+var userRouter = require('./src/Controller/userController');
+var Authcontroller = require('./src/Controller/authController');
+
+
 const mongoose = require('mongoose');
 const config = require('./src/config/index.js')['devo'];
 var app = express();
@@ -24,7 +28,12 @@ mongoose.connect(config.MONGO_DB_URL, {
 mongoose.connection.on('connected', function () {
   console.log("hey");
 });
-app.use('/api', indexRouter);
+
+app.use('/api', Authcontroller)
+
+app.use('/api/playlist', playlistRouter);
+app.use('/api/user', userRouter);
+
 
 
 
